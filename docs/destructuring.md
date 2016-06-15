@@ -459,11 +459,12 @@ move(); // [0, 0]
 function move({x, y} = { x: 0, y: 0 }) {
   return [x, y];
 }
-
+//我们可以把{x, y} 当一个参数xx，而️{ x: 0, y: 0 }是一个值。我们可以认为是yy吧。
+//function move(xx=yy){} 就是当传入的参数是undefined的时候，那么xx就是默认的值yy，而yy其实就是{x:0,y:0},
 move({x: 3, y: 8}); // [3, 8]
 move({x: 3}); // [3, undefined]
-move({}); // [undefined, undefined]
-move(); // [0, 0]
+move({}); // [undefined, undefined],相当于:我们传入的是一个{},不是undefined不会触发默认的值，所以我们的{x, y} 会用传入的{}去解构。
+move(); // [0, 0] 相当于:我们传入的是undefined， 然后我们就触发函数默认的参数使传入的参数为：{ x: 0, y: 0 }
 ```
 
 上面代码是为函数`move`的参数指定默认值，而不是为变量`x`和`y`指定默认值，所以会得到与前一种写法不同的结果。
